@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>旅遊計畫書</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      background: #fff;
+      color: #37352f;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 240px;
+      min-width: 240px;
+      background: #f7f6f3;
+      border-right: 1px solid #e9e9e7;
+      padding: 32px 12px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      font-size: 11px;
+      font-weight: 600;
+      color: #9b9a97;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      margin-bottom: 6px;
+    }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #37352f;
+      text-decoration: none;
+      transition: background 0.1s;
+    }
+
+    .sidebar a:hover { background: #e9e8e4; }
+    .sidebar a.active { background: #e9e8e4; font-weight: 600; }
+
+    /* ── Main ── */
+    .main {
+      flex: 1;
+      padding: 60px 96px;
+      max-width: 900px;
+    }
+
+    .page-title {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      color: #37352f;
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 56px;
+      scroll-margin-top: 40px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #e9e9e7;
+      padding-bottom: 10px;
+    }
+
+    .sub-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 20px 0 10px;
+    }
+
+    .date-label {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 16px 0 8px;
+      color: #37352f;
+    }
+
+    /* ── Callout ── */
+    .callout {
+      background: #f9f7f0;
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 12px 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .callout .icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── Table ── */
+    .table-wrap {
+      border: 1px solid #e9e9e7;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f7f6f3;
+      color: #9b9a97;
+      font-weight: 500;
+      font-size: 13px;
+      padding: 8px 14px;
+      text-align: left;
+      border-bottom: 1px solid #e9e9e7;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e9e9e7;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    tr.row-depart td { background: #f9f7f0; }
+    tr.row-arrive td { background: #fdf2f2; }
+
+    td small {
+      display: block;
+      color: #9b9a97;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid #e9e9e7;
+      margin-bottom: 16px;
+    }
+
+    .tab-btn {
+      padding: 6px 14px;
+      font-size: 13px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #9b9a97;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.1s;
+    }
+
+    .tab-btn.active {
+      color: #37352f;
+      font-weight: 600;
+      border-bottom-color: #37352f;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── Price table highlight ── */
+    .price-highlight { color: #e03e3e; font-weight: 600; }
+
+    /* ── Meta info ── */
+    .meta-line {
+      font-size: 14px;
+      color: #37352f;
+      margin: 8px 0;
+      line-height: 1.7;
+    }
+
+    .meta-line a {
+      color: #2eaadc;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .meta-line a:hover { text-decoration: underline; }
+
+    .map-icon {
+      width: 16px;
+      height: 16px;
+      background: #4285f4;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: white;
+      font-weight: 700;
+    }
+
+    /* ── Image placeholder ── */
+    .img-placeholder {
+      width: 100%;
+      max-width: 560px;
+      height: 320px;
+      background: #f0efed;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9b9a97;
+      font-size: 13px;
+      margin: 12px 0;
+    }
+
+    /* ── Empty row placeholder ── */
+    td.empty { color: #d0cfc9; font-style: italic; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav class="sidebar">
+  <h2>旅遊計畫書</h2>
+  <a href="#activity">🔊 活動資訊</a>
+  <a href="#campsite">🏕️ 營區資訊</a>
+  <a href="#price">💰 租借裝備價目表</a>
+  <a href="#rental">📋 租借裝備明細</a>
+  <a href="#tern">🚲 Tern 租借項目</a>
+  <a href="#items">🎒 攜帶物品</a>
+  <a href="#notes">📝 備註</a>
+</nav>
+
+<!-- Main content -->
+<main class="main">
+  <div class="page-title">🏕️ 旅遊計畫書</div>
+
+  <!-- 1. 活動資訊 -->
+  <section class="section" id="activity">
+    <h2 class="section-title">🔊 活動資訊</h2>
+
+    <div class="sub-title">騎乘時間表</div>
+    <div class="date-label">05/30</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:45%">地點</th>
+            <th style="width:15%">時間</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>集合點：公司</td>
+            <td>8:00</td>
+            <td>
+              聯絡人：Tina
+              <small>集合人員：Tina, Chi, 嘉豪, Yuki</small>
+            </td>
+          </tr>
+          <tr class="row-depart">
+            <td>從公司出發</td>
+            <td>8:30</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>集合點：三七萊</td>
+            <td>10:30</td>
+            <td>
+              聯絡人：JoJo
+              <small>集合人員：JoJo, Alison, Angeline</small>
+            </td>
+          </tr>
+          <tr class="row-depart">
+            <td>從三七萊出發</td>
+            <td>10:45</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>吃午餐：隨緣小棧</td>
+            <td>12:00</td>
+            <td></td>
+          </tr>
+          <tr class="row-depart">
+            <td>吃完午餐出發到露營區</td>
+            <td>13:30</td>
+            <td></td>
+          </tr>
+          <tr class="row-arrive">
+            <td>抵達露營區：可飛鹿營區</td>
+            <td>14:45</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <span class="icon">💡</span>
+      <span>Angeline &amp; Alison meet at <strong>華江河濱公園</strong> at 9:15.</span>
+    </div>
+
+    <div class="meta-line">
+      騎乘路線：
+      <a href="https://maps.google.com" target="_blank">
+        <span class="map-icon">G</span> Google Maps
+      </a>
+    </div>
+
+    <div class="meta-line">
+      參加人員：JoJo、Alison、Angeline、Chi、嘉豪、Chiao、Tina、Yuki、孟勳、安安、豪哥、漢誌（？）
+    </div>
+  </section>
+
+  <!-- 2. 營區資訊 -->
+  <section class="section" id="campsite">
+    <h2 class="section-title">🏕️ 營區資訊</h2>
+
+    <div class="meta-line">
+      <a href="#" target="_blank">🏔️ 露營樂 營區介紹 - 桃園復興 可飛鹿營區</a>
+    </div>
+
+    <div class="callout">
+      <span class="icon">💡</span>
+      <span>我們是包 K、L 區</span>
+    </div>
+
+    <div class="tabs" id="campsite-tabs">
+      <button class="tab-btn active" onclick="switchTab('campsite', 0)">空拍圖</button>
+      <button class="tab-btn" onclick="switchTab('campsite', 1)">園區地圖</button>
+      <button class="tab-btn" onclick="switchTab('campsite', 2)">K 區資訊</button>
+      <button class="tab-btn" onclick="switchTab('campsite', 3)">L 區資訊</button>
+      <button class="tab-btn" onclick="switchTab('campsite', 4)">營區公約</button>
+      <button class="tab-btn" onclick="switchTab('campsite', 5)">退費須知</button>
+      <button class="tab-btn" onclick="switchTab('campsite', 6)">訂位流程</button>
+    </div>
+
+    <div id="campsite-panel-0" class="tab-content active">
+      <img src="aerial.png" alt="空拍圖" style="max-width:100%;border-radius:6px;margin-top:8px;" />
+    </div>
+    <div id="campsite-panel-1" class="tab-content">
+      <img src="park-map.jpg" alt="園區地圖" style="max-width:100%;border-radius:6px;margin-top:8px;" />
+    </div>
+    <div id="campsite-panel-2" class="tab-content">
+      <img src="zone-k.jpg" alt="K 區資訊" style="max-width:100%;border-radius:6px;margin-top:8px;" />
+    </div>
+    <div id="campsite-panel-3" class="tab-content">
+      <img src="zone-l.jpg" alt="L 區資訊" style="max-width:100%;border-radius:6px;margin-top:8px;" />
+    </div>
+    <div id="campsite-panel-4" class="tab-content">
+      <img src="rules.jpg" alt="生活公約" style="max-width:100%;border-radius:6px;margin-top:8px;" />
+    </div>
+    <div id="campsite-panel-5" class="tab-content">
+      <img src="refund.jpg" alt="退款須知" style="max-width:100%;border-radius:6px;margin-top:8px;" />
+    </div>
+    <div id="campsite-panel-6" class="tab-content">
+      <img src="booking.jpg" alt="訂位流程" style="max-width:100%;border-radius:6px;margin-top:8px;" />
+    </div>
+  </section>
+
+  <!-- 3. 租借裝備價目表 -->
+  <section class="section" id="price">
+    <h2 class="section-title">💰 租借裝備價目表</h2>
+
+    <div class="tabs" id="price-tabs">
+      <button class="tab-btn active" onclick="switchTab('price', 0)">價目表</button>
+      <button class="tab-btn" onclick="switchTab('price', 1)">床墊圖</button>
+      <button class="tab-btn" onclick="switchTab('price', 2)">帳棚圖</button>
+    </div>
+
+    <div id="price-panel-0" class="tab-content active">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:15%">方案</th>
+              <th>品項</th>
+              <th style="width:25%">收費</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:600;text-align:center">A</td>
+              <td>
+                TT270 四人帳<br/>
+                <span style="color:#e03e3e">270公分 × 270公分</span><br/>
+                附 篷內燈・電源延長線
+              </td>
+              <td>
+                1,200 元（含搭拆帳）<br/>
+                <small>未加營位費 1,200 元</small>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;text-align:center">B</td>
+              <td>
+                睡眠組 — <span style="color:#e03e3e">雙人充氣床墊</span><br/>
+                191公分 × 137公分 × 25公分<br/>
+                附 枕頭（家庭用）×2・床包・枕頭套
+              </td>
+              <td>400 元</td>
+            </tr>
+            <tr style="background:#f9f7f0">
+              <td style="font-weight:600;text-align:center">選擇</td>
+              <td>
+                A<br/>A + B<br/>A + B + B
+              </td>
+              <td>
+                <span class="price-highlight">1,200 元</span><br/>
+                <span class="price-highlight">1,600 元</span><br/>
+                <span class="price-highlight">2,000 元</span>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;text-align:center">夜衝價</td>
+              <td colspan="2">
+                (1) 選擇方案 減 300（隔日需續租）／單選 B 案無折扣<br/>
+                (2) 隔日恢復原價
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout" style="background:#fff5f5; margin-top:12px;">
+        <span class="icon">📌</span>
+        <div>
+          <strong>注意事項</strong><br/>
+          (1) 搭帳作業會於入住日「前一天開始作業」<br/>
+          (2) 取消或延期租帳訂單，須於「入住日前兩天」告知<br/>
+          (3) 已搭帳完成，則需支付搭拆帳工資 300 元<br/>
+          <strong>若不同意以上注意事項，請勿下單</strong>
+        </div>
+      </div>
+    </div>
+
+    <div id="price-panel-1" class="tab-content">
+      <img src="mattress.jpg" alt="床墊圖" style="max-width:100%;border-radius:6px;margin-top:8px;" />
+    </div>
+    <div id="price-panel-2" class="tab-content">
+      <img src="tent.jpg" alt="帳棚圖" style="max-width:100%;border-radius:6px;margin-top:8px;" />
+    </div>
+  </section>
+
+  <!-- 4. 租借裝備明細 -->
+  <section class="section" id="rental">
+    <h2 class="section-title">📋 租借裝備明細</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>租借項目</th>
+            <th style="width:20%">價格</th>
+            <th style="width:30%">使用人員</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A + B</td>
+            <td>1,600</td>
+            <td>Chi</td>
+          </tr>
+          <tr>
+            <td>A + B + B</td>
+            <td>2,000</td>
+            <td class="empty">—</td>
+          </tr>
+          <tr>
+            <td class="empty">—</td>
+            <td class="empty">—</td>
+            <td class="empty">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 5. Tern 租借項目 -->
+  <section class="section" id="tern">
+    <h2 class="section-title">🚲 Tern 租借項目</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>車輛</th>
+            <th style="width:20%">電池</th>
+            <th style="width:30%">使用人員</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HSD × 2</td>
+            <td>4</td>
+            <td>Chi</td>
+          </tr>
+          <tr>
+            <td class="empty">—</td>
+            <td>1</td>
+            <td>Angeline</td>
+          </tr>
+          <tr>
+            <td class="empty">—</td>
+            <td>1</td>
+            <td>JoJo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 6. 攜帶物品 -->
+  <section class="section" id="items">
+    <h2 class="section-title">🎒 攜帶物品</h2>
+    <div class="callout">
+      <span class="icon">📝</span>
+      <span>攜帶物品清單（待補充）</span>
+    </div>
+  </section>
+
+  <!-- 7. 備註 -->
+  <section class="section" id="notes">
+    <h2 class="section-title">📝 備註</h2>
+    <div class="callout">
+      <span class="icon">💬</span>
+      <span>備註內容（待補充）</span>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Tab switching
+  function switchTab(group, index) {
+    const tabs = document.getElementById(group + '-tabs');
+    const btns = tabs.querySelectorAll('.tab-btn');
+    btns.forEach((b, i) => b.classList.toggle('active', i === index));
+
+    btns.forEach((_, i) => {
+      const panel = document.getElementById(group + '-panel-' + i);
+      if (panel) panel.classList.toggle('active', i === index);
+    });
+  }
+
+  // Sidebar active link on scroll
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.sidebar a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`.sidebar a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
