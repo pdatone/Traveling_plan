@@ -6,213 +6,273 @@
   <title>旅遊計畫書</title>
   <link rel="stylesheet" href="./dist/output.css" />
   <style>
-    /* JS-toggled states */
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .tab-btn.active { color: #37352f; font-weight: 600; border-bottom-color: #37352f; }
-    .sidebar a.active { background: #e9e8e4; font-weight: 600; }
+    .tab-btn.active { background: #16a34a; color: white; }
+    .sidebar a.active { background: rgba(255,255,255,0.15); color: white; }
     tr:last-child td { border-bottom: 0; }
   </style>
 </head>
-<body class="flex min-h-screen bg-white text-[#37352f] font-sans">
+<body class="flex min-h-screen bg-stone-50 font-sans">
 
 <!-- Sidebar -->
-<nav class="sidebar hidden md:block w-60 min-w-[240px] bg-[#f7f6f3] border-r border-[#e9e9e7] py-8 px-3 sticky top-0 h-screen overflow-y-auto">
-  <h2 class="text-[11px] font-semibold text-[#9b9a97] uppercase tracking-[0.06em] px-[10px] py-1 mb-1.5">旅遊計畫書</h2>
-  <a href="#activity" class="flex items-center gap-2 py-[5px] px-[10px] rounded text-sm text-[#37352f] no-underline transition-colors duration-100 hover:bg-[#e9e8e4]">🔊 活動資訊</a>
-  <a href="#campsite" class="flex items-center gap-2 py-[5px] px-[10px] rounded text-sm text-[#37352f] no-underline transition-colors duration-100 hover:bg-[#e9e8e4]">🏕️ 營區資訊</a>
-  <a href="#price" class="flex items-center gap-2 py-[5px] px-[10px] rounded text-sm text-[#37352f] no-underline transition-colors duration-100 hover:bg-[#e9e8e4]">💰 租借裝備價目表</a>
-  <a href="#rental" class="flex items-center gap-2 py-[5px] px-[10px] rounded text-sm text-[#37352f] no-underline transition-colors duration-100 hover:bg-[#e9e8e4]">📋 租借裝備明細</a>
-  <a href="#tern" class="flex items-center gap-2 py-[5px] px-[10px] rounded text-sm text-[#37352f] no-underline transition-colors duration-100 hover:bg-[#e9e8e4]">🚲 Tern 租借項目</a>
-  <a href="#items" class="flex items-center gap-2 py-[5px] px-[10px] rounded text-sm text-[#37352f] no-underline transition-colors duration-100 hover:bg-[#e9e8e4]">🎒 攜帶物品</a>
-  <a href="#notes" class="flex items-center gap-2 py-[5px] px-[10px] rounded text-sm text-[#37352f] no-underline transition-colors duration-100 hover:bg-[#e9e8e4]">📝 備註</a>
+<nav class="sidebar hidden md:flex md:flex-col w-64 min-w-[256px] py-8 px-4 sticky top-0 h-screen overflow-y-auto bg-gradient-to-b from-[#0d2b1a] to-[#1a4731]">
+  <div class="mb-8 px-2">
+    <div class="text-3xl mb-2">🏕️</div>
+    <h1 class="text-white font-bold text-lg leading-tight">旅遊計畫書</h1>
+    <p class="text-green-400 text-xs mt-1 font-medium">2025 / 05 / 30</p>
+  </div>
+
+  <p class="text-[10px] font-bold text-green-500 uppercase tracking-widest px-2 mb-2">目錄</p>
+  <a href="#activity" class="flex items-center gap-2.5 py-2 px-3 rounded-xl text-sm text-green-100 no-underline transition-all duration-150 hover:bg-white/10 mb-0.5">🔊 活動資訊</a>
+  <a href="#campsite" class="flex items-center gap-2.5 py-2 px-3 rounded-xl text-sm text-green-100 no-underline transition-all duration-150 hover:bg-white/10 mb-0.5">🏕️ 營區資訊</a>
+  <a href="#price" class="flex items-center gap-2.5 py-2 px-3 rounded-xl text-sm text-green-100 no-underline transition-all duration-150 hover:bg-white/10 mb-0.5">💰 租借裝備價目表</a>
+  <a href="#rental" class="flex items-center gap-2.5 py-2 px-3 rounded-xl text-sm text-green-100 no-underline transition-all duration-150 hover:bg-white/10 mb-0.5">📋 租借裝備明細</a>
+  <a href="#tern" class="flex items-center gap-2.5 py-2 px-3 rounded-xl text-sm text-green-100 no-underline transition-all duration-150 hover:bg-white/10 mb-0.5">🚲 Tern 租借項目</a>
+  <a href="#items" class="flex items-center gap-2.5 py-2 px-3 rounded-xl text-sm text-green-100 no-underline transition-all duration-150 hover:bg-white/10 mb-0.5">🎒 攜帶物品</a>
+  <a href="#notes" class="flex items-center gap-2.5 py-2 px-3 rounded-xl text-sm text-green-100 no-underline transition-all duration-150 hover:bg-white/10 mb-0.5">📝 備註</a>
 </nav>
 
 <!-- Main content -->
-<main class="flex-1 py-8 px-5 md:py-[60px] md:px-24 max-w-[900px]">
-  <div class="text-[40px] font-bold mb-10 text-[#37352f]">🏕️ 旅遊計畫書</div>
+<main class="flex-1 py-10 px-6 md:px-12 max-w-[860px]">
+
+  <!-- Hero header -->
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-1.5 bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-3">
+      📅 2025 年 5 月 30 日
+    </div>
+    <h1 class="text-4xl font-black text-slate-800 leading-tight mb-1">🏕️ 旅遊計畫書</h1>
+    <p class="text-slate-400 text-sm">桃園復興・可飛鹿營區</p>
+  </div>
 
   <!-- 1. 活動資訊 -->
-  <section class="section mb-14 scroll-mt-10" id="activity">
-    <h2 class="text-2xl font-bold mb-5 flex items-center gap-2 border-b border-[#e9e9e7] pb-2.5">🔊 活動資訊</h2>
+  <section class="section mb-6 scroll-mt-10 bg-white rounded-2xl shadow-sm border border-slate-100 p-6" id="activity">
+    <h2 class="text-base font-bold mb-5 flex items-center gap-2 text-slate-800">
+      <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">🔊</span>
+      活動資訊
+    </h2>
 
-    <div class="text-lg font-semibold mt-5 mb-2.5">騎乘時間表</div>
-    <div class="text-[15px] font-semibold mt-4 mb-2 text-[#37352f]">05/30</div>
+    <p class="text-sm font-semibold text-slate-600 mb-2">🚲 騎乘時間表</p>
+    <div class="inline-flex items-center bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full mb-3">
+      📅 05/30
+    </div>
 
-    <div class="border border-[#e9e9e7] rounded overflow-hidden my-3">
+    <div class="rounded-xl overflow-hidden border border-slate-100 mb-4">
       <table class="w-full text-sm border-collapse">
         <thead>
           <tr>
-            <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]" style="width:45%">地點</th>
-            <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]" style="width:15%">時間</th>
-            <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]">備註</th>
+            <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100" style="width:45%">地點</th>
+            <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100" style="width:15%">時間</th>
+            <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100">備註</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">集合點：公司</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">8:00</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">
+            <td class="px-4 py-3 border-b border-slate-50 align-top text-slate-700">集合點：公司</td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top">
+              <span class="bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-md">8:00</span>
+            </td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top text-slate-700">
               聯絡人：Tina
-              <small class="block text-[#9b9a97] text-[12px] mt-0.5">集合人員：Tina, Chi, 嘉豪, Yuki</small>
+              <small class="block text-slate-400 text-xs mt-0.5">集合人員：Tina, Chi, 嘉豪, Yuki</small>
             </td>
           </tr>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#f9f7f0]">從公司出發</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#f9f7f0]">8:30</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#f9f7f0]"></td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top bg-amber-50/60 text-slate-700">從公司出發</td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top bg-amber-50/60">
+              <span class="bg-amber-100 text-amber-700 text-xs font-semibold px-2 py-0.5 rounded-md">8:30</span>
+            </td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top bg-amber-50/60"></td>
           </tr>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">集合點：三七萊</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">10:30</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">
+            <td class="px-4 py-3 border-b border-slate-50 align-top text-slate-700">集合點：三七萊</td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top">
+              <span class="bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-md">10:30</span>
+            </td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top text-slate-700">
               聯絡人：JoJo
-              <small class="block text-[#9b9a97] text-[12px] mt-0.5">集合人員：JoJo, Alison, Angeline</small>
+              <small class="block text-slate-400 text-xs mt-0.5">集合人員：JoJo, Alison, Angeline</small>
             </td>
           </tr>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#f9f7f0]">從三七萊出發</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#f9f7f0]">10:45</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#f9f7f0]"></td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top bg-amber-50/60 text-slate-700">從三七萊出發</td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top bg-amber-50/60">
+              <span class="bg-amber-100 text-amber-700 text-xs font-semibold px-2 py-0.5 rounded-md">10:45</span>
+            </td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top bg-amber-50/60"></td>
           </tr>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">吃午餐：隨緣小棧</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">12:00</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed"></td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top text-slate-700">吃午餐：隨緣小棧</td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top">
+              <span class="bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-md">12:00</span>
+            </td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top"></td>
           </tr>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#f9f7f0]">吃完午餐出發到露營區</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#f9f7f0]">13:30</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#f9f7f0]"></td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top bg-amber-50/60 text-slate-700">吃完午餐出發到露營區</td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top bg-amber-50/60">
+              <span class="bg-amber-100 text-amber-700 text-xs font-semibold px-2 py-0.5 rounded-md">13:30</span>
+            </td>
+            <td class="px-4 py-3 border-b border-slate-50 align-top bg-amber-50/60"></td>
           </tr>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#fdf2f2]">抵達露營區：可飛鹿營區</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#fdf2f2]">14:45</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed bg-[#fdf2f2]"></td>
+            <td class="px-4 py-3 align-top bg-green-50 text-green-800 font-semibold">🎯 抵達露營區：可飛鹿營區</td>
+            <td class="px-4 py-3 align-top bg-green-50">
+              <span class="bg-green-200 text-green-800 text-xs font-bold px-2 py-0.5 rounded-md">14:45</span>
+            </td>
+            <td class="px-4 py-3 align-top bg-green-50"></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="bg-[#f9f7f0] rounded-md px-4 py-3 flex items-start gap-2.5 my-3 text-sm leading-relaxed">
-      <span class="text-lg shrink-0 mt-[1px]">💡</span>
-      <span>Angeline &amp; Alison meet at <strong>華江河濱公園</strong> at 9:15.</span>
+    <div class="border-l-4 border-amber-400 bg-amber-50 rounded-r-xl px-4 py-3 flex items-start gap-2.5 mb-4 text-sm">
+      <span class="shrink-0 mt-0.5">💡</span>
+      <span class="text-amber-900">Angeline &amp; Alison meet at <strong>華江河濱公園</strong> at 9:15.</span>
     </div>
 
-    <div class="text-sm text-[#37352f] my-2 leading-[1.7]">
-      騎乘路線：
-      <a href="https://maps.google.com" target="_blank" class="text-[#2eaadc] no-underline inline-flex items-center gap-1 hover:underline">
-        <span class="w-4 h-4 bg-[#4285f4] rounded-full inline-flex items-center justify-center text-[10px] text-white font-bold">G</span> Google Maps
+    <div class="flex items-center gap-2 mb-4 text-sm text-slate-500">
+      🗺️ 騎乘路線：
+      <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-1.5 bg-green-700 hover:bg-green-800 text-white text-xs font-semibold px-3 py-1.5 rounded-full no-underline transition-colors">
+        <span class="w-3.5 h-3.5 bg-white rounded-full inline-flex items-center justify-center text-[9px] text-green-700 font-black">G</span>
+        Google Maps
       </a>
     </div>
 
-    <div class="text-sm text-[#37352f] my-2 leading-[1.7]">
-      參加人員：JoJo、Alison、Angeline、Chi、嘉豪、Chiao、Tina、Yuki、孟勳、安安、豪哥、漢誌（？）
+    <div class="bg-slate-50 rounded-xl p-4">
+      <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">參加人員</p>
+      <div class="flex flex-wrap gap-1.5">
+        <span class="bg-white border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-full shadow-sm">JoJo</span>
+        <span class="bg-white border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-full shadow-sm">Alison</span>
+        <span class="bg-white border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-full shadow-sm">Angeline</span>
+        <span class="bg-white border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-full shadow-sm">Chi</span>
+        <span class="bg-white border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-full shadow-sm">嘉豪</span>
+        <span class="bg-white border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-full shadow-sm">Chiao</span>
+        <span class="bg-white border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-full shadow-sm">Tina</span>
+        <span class="bg-white border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-full shadow-sm">Yuki</span>
+        <span class="bg-white border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-full shadow-sm">孟勳</span>
+        <span class="bg-white border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-full shadow-sm">安安</span>
+        <span class="bg-white border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-full shadow-sm">豪哥</span>
+        <span class="bg-white border border-slate-200 text-slate-400 text-xs px-2.5 py-1 rounded-full shadow-sm opacity-60">漢誌（？）</span>
+      </div>
     </div>
   </section>
 
   <!-- 2. 營區資訊 -->
-  <section class="section mb-14 scroll-mt-10" id="campsite">
-    <h2 class="text-2xl font-bold mb-5 flex items-center gap-2 border-b border-[#e9e9e7] pb-2.5">🏕️ 營區資訊</h2>
+  <section class="section mb-6 scroll-mt-10 bg-white rounded-2xl shadow-sm border border-slate-100 p-6" id="campsite">
+    <h2 class="text-base font-bold mb-4 flex items-center gap-2 text-slate-800">
+      <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">🏕️</span>
+      營區資訊
+    </h2>
 
-    <div class="text-sm text-[#37352f] my-2 leading-[1.7]">
-      <a href="#" target="_blank" class="text-[#2eaadc] no-underline inline-flex items-center gap-1 hover:underline">🏔️ 露營樂 營區介紹 - 桃園復興 可飛鹿營區</a>
+    <a href="#" target="_blank" class="inline-flex items-center gap-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 text-sm px-4 py-2.5 rounded-xl no-underline transition-colors mb-4">
+      🏔️ 露營樂 營區介紹 - 桃園復興 可飛鹿營區 →
+    </a>
+
+    <div class="border-l-4 border-green-400 bg-green-50 rounded-r-xl px-4 py-3 flex items-start gap-2.5 mb-4 text-sm">
+      <span class="shrink-0 mt-0.5">💡</span>
+      <span class="text-green-800">我們是包 <strong>K、L 區</strong></span>
     </div>
 
-    <div class="bg-[#f9f7f0] rounded-md px-4 py-3 flex items-start gap-2.5 my-3 text-sm leading-relaxed">
-      <span class="text-lg shrink-0 mt-[1px]">💡</span>
-      <span>我們是包 K、L 區</span>
-    </div>
-
-    <div class="flex gap-1 border-b border-[#e9e9e7] mb-4" id="campsite-tabs">
-      <button class="tab-btn active px-[14px] py-[6px] text-[13px] [border:none] [border-bottom:2px_solid_transparent] bg-transparent cursor-pointer text-[#9b9a97] -mb-px transition-colors duration-100" onclick="switchTab('campsite', 0)">空拍圖</button>
-      <button class="tab-btn px-[14px] py-[6px] text-[13px] [border:none] [border-bottom:2px_solid_transparent] bg-transparent cursor-pointer text-[#9b9a97] -mb-px transition-colors duration-100" onclick="switchTab('campsite', 1)">園區地圖</button>
-      <button class="tab-btn px-[14px] py-[6px] text-[13px] [border:none] [border-bottom:2px_solid_transparent] bg-transparent cursor-pointer text-[#9b9a97] -mb-px transition-colors duration-100" onclick="switchTab('campsite', 2)">K 區資訊</button>
-      <button class="tab-btn px-[14px] py-[6px] text-[13px] [border:none] [border-bottom:2px_solid_transparent] bg-transparent cursor-pointer text-[#9b9a97] -mb-px transition-colors duration-100" onclick="switchTab('campsite', 3)">L 區資訊</button>
-      <button class="tab-btn px-[14px] py-[6px] text-[13px] [border:none] [border-bottom:2px_solid_transparent] bg-transparent cursor-pointer text-[#9b9a97] -mb-px transition-colors duration-100" onclick="switchTab('campsite', 4)">營區公約</button>
-      <button class="tab-btn px-[14px] py-[6px] text-[13px] [border:none] [border-bottom:2px_solid_transparent] bg-transparent cursor-pointer text-[#9b9a97] -mb-px transition-colors duration-100" onclick="switchTab('campsite', 5)">退費須知</button>
-      <button class="tab-btn px-[14px] py-[6px] text-[13px] [border:none] [border-bottom:2px_solid_transparent] bg-transparent cursor-pointer text-[#9b9a97] -mb-px transition-colors duration-100" onclick="switchTab('campsite', 6)">訂位流程</button>
+    <div class="flex flex-wrap gap-2 mb-4" id="campsite-tabs">
+      <button class="tab-btn active text-xs font-semibold px-4 py-1.5 rounded-full border-0 cursor-pointer bg-slate-100 text-slate-500 transition-all duration-150 hover:bg-slate-200" onclick="switchTab('campsite', 0)">空拍圖</button>
+      <button class="tab-btn text-xs font-semibold px-4 py-1.5 rounded-full border-0 cursor-pointer bg-slate-100 text-slate-500 transition-all duration-150 hover:bg-slate-200" onclick="switchTab('campsite', 1)">園區地圖</button>
+      <button class="tab-btn text-xs font-semibold px-4 py-1.5 rounded-full border-0 cursor-pointer bg-slate-100 text-slate-500 transition-all duration-150 hover:bg-slate-200" onclick="switchTab('campsite', 2)">K 區資訊</button>
+      <button class="tab-btn text-xs font-semibold px-4 py-1.5 rounded-full border-0 cursor-pointer bg-slate-100 text-slate-500 transition-all duration-150 hover:bg-slate-200" onclick="switchTab('campsite', 3)">L 區資訊</button>
+      <button class="tab-btn text-xs font-semibold px-4 py-1.5 rounded-full border-0 cursor-pointer bg-slate-100 text-slate-500 transition-all duration-150 hover:bg-slate-200" onclick="switchTab('campsite', 4)">營區公約</button>
+      <button class="tab-btn text-xs font-semibold px-4 py-1.5 rounded-full border-0 cursor-pointer bg-slate-100 text-slate-500 transition-all duration-150 hover:bg-slate-200" onclick="switchTab('campsite', 5)">退費須知</button>
+      <button class="tab-btn text-xs font-semibold px-4 py-1.5 rounded-full border-0 cursor-pointer bg-slate-100 text-slate-500 transition-all duration-150 hover:bg-slate-200" onclick="switchTab('campsite', 6)">訂位流程</button>
     </div>
 
     <div id="campsite-panel-0" class="tab-content active">
-      <img src="aerial.png" alt="空拍圖" class="max-w-full rounded-md mt-2" />
+      <img src="aerial.png" alt="空拍圖" class="max-w-full rounded-xl" />
     </div>
     <div id="campsite-panel-1" class="tab-content">
-      <img src="park-map.jpg" alt="園區地圖" class="max-w-full rounded-md mt-2" />
+      <img src="park-map.jpg" alt="園區地圖" class="max-w-full rounded-xl" />
     </div>
     <div id="campsite-panel-2" class="tab-content">
-      <img src="zone-k.jpg" alt="K 區資訊" class="max-w-full rounded-md mt-2" />
+      <img src="zone-k.jpg" alt="K 區資訊" class="max-w-full rounded-xl" />
     </div>
     <div id="campsite-panel-3" class="tab-content">
-      <img src="zone-l.jpg" alt="L 區資訊" class="max-w-full rounded-md mt-2" />
+      <img src="zone-l.jpg" alt="L 區資訊" class="max-w-full rounded-xl" />
     </div>
     <div id="campsite-panel-4" class="tab-content">
-      <img src="rules.jpg" alt="生活公約" class="max-w-full rounded-md mt-2" />
+      <img src="rules.jpg" alt="生活公約" class="max-w-full rounded-xl" />
     </div>
     <div id="campsite-panel-5" class="tab-content">
-      <img src="refund.jpg" alt="退款須知" class="max-w-full rounded-md mt-2" />
+      <img src="refund.jpg" alt="退款須知" class="max-w-full rounded-xl" />
     </div>
     <div id="campsite-panel-6" class="tab-content">
-      <img src="booking.jpg" alt="訂位流程" class="max-w-full rounded-md mt-2" />
+      <img src="booking.jpg" alt="訂位流程" class="max-w-full rounded-xl" />
     </div>
   </section>
 
   <!-- 3. 租借裝備價目表 -->
-  <section class="section mb-14 scroll-mt-10" id="price">
-    <h2 class="text-2xl font-bold mb-5 flex items-center gap-2 border-b border-[#e9e9e7] pb-2.5">💰 租借裝備價目表</h2>
+  <section class="section mb-6 scroll-mt-10 bg-white rounded-2xl shadow-sm border border-slate-100 p-6" id="price">
+    <h2 class="text-base font-bold mb-4 flex items-center gap-2 text-slate-800">
+      <span class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">💰</span>
+      租借裝備價目表
+    </h2>
 
-    <div class="flex gap-1 border-b border-[#e9e9e7] mb-4" id="price-tabs">
-      <button class="tab-btn active px-[14px] py-[6px] text-[13px] [border:none] [border-bottom:2px_solid_transparent] bg-transparent cursor-pointer text-[#9b9a97] -mb-px transition-colors duration-100" onclick="switchTab('price', 0)">價目表</button>
-      <button class="tab-btn px-[14px] py-[6px] text-[13px] [border:none] [border-bottom:2px_solid_transparent] bg-transparent cursor-pointer text-[#9b9a97] -mb-px transition-colors duration-100" onclick="switchTab('price', 1)">床墊圖</button>
-      <button class="tab-btn px-[14px] py-[6px] text-[13px] [border:none] [border-bottom:2px_solid_transparent] bg-transparent cursor-pointer text-[#9b9a97] -mb-px transition-colors duration-100" onclick="switchTab('price', 2)">帳棚圖</button>
+    <div class="flex flex-wrap gap-2 mb-4" id="price-tabs">
+      <button class="tab-btn active text-xs font-semibold px-4 py-1.5 rounded-full border-0 cursor-pointer bg-slate-100 text-slate-500 transition-all duration-150 hover:bg-slate-200" onclick="switchTab('price', 0)">價目表</button>
+      <button class="tab-btn text-xs font-semibold px-4 py-1.5 rounded-full border-0 cursor-pointer bg-slate-100 text-slate-500 transition-all duration-150 hover:bg-slate-200" onclick="switchTab('price', 1)">床墊圖</button>
+      <button class="tab-btn text-xs font-semibold px-4 py-1.5 rounded-full border-0 cursor-pointer bg-slate-100 text-slate-500 transition-all duration-150 hover:bg-slate-200" onclick="switchTab('price', 2)">帳棚圖</button>
     </div>
 
     <div id="price-panel-0" class="tab-content active">
-      <div class="border border-[#e9e9e7] rounded overflow-hidden my-3">
+      <div class="rounded-xl overflow-hidden border border-slate-100 mb-4">
         <table class="w-full text-sm border-collapse">
           <thead>
             <tr>
-              <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]" style="width:15%">方案</th>
-              <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]">品項</th>
-              <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]" style="width:25%">收費</th>
+              <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100" style="width:15%">方案</th>
+              <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100">品項</th>
+              <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100" style="width:25%">收費</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed font-semibold text-center">A</td>
-              <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">
+              <td class="px-4 py-3 border-b border-slate-50 align-top">
+                <span class="bg-slate-800 text-white text-xs font-bold w-6 h-6 rounded-lg inline-flex items-center justify-center">A</span>
+              </td>
+              <td class="px-4 py-3 border-b border-slate-50 align-top text-slate-700 leading-relaxed">
                 TT270 四人帳<br/>
-                <span class="text-[#e03e3e]">270公分 × 270公分</span><br/>
+                <span class="text-rose-500 text-xs">270公分 × 270公分</span><br/>
                 附 篷內燈・電源延長線
               </td>
-              <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">
-                1,200 元（含搭拆帳）<br/>
-                <small class="block text-[#9b9a97] text-[12px] mt-0.5">未加營位費 1,200 元</small>
+              <td class="px-4 py-3 border-b border-slate-50 align-top leading-relaxed">
+                <span class="font-semibold text-slate-800">1,200 元</span>
+                <span class="text-slate-400 text-xs">（含搭拆帳）</span><br/>
+                <small class="text-slate-400 text-xs">未加營位費 1,200 元</small>
               </td>
             </tr>
             <tr>
-              <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed font-semibold text-center">B</td>
-              <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">
-                睡眠組 — <span class="text-[#e03e3e]">雙人充氣床墊</span><br/>
+              <td class="px-4 py-3 border-b border-slate-50 align-top">
+                <span class="bg-slate-800 text-white text-xs font-bold w-6 h-6 rounded-lg inline-flex items-center justify-center">B</span>
+              </td>
+              <td class="px-4 py-3 border-b border-slate-50 align-top text-slate-700 leading-relaxed">
+                睡眠組 — <span class="text-rose-500">雙人充氣床墊</span><br/>
                 191公分 × 137公分 × 25公分<br/>
                 附 枕頭（家庭用）×2・床包・枕頭套
               </td>
-              <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">400 元</td>
+              <td class="px-4 py-3 border-b border-slate-50 align-top">
+                <span class="font-semibold text-slate-800">400 元</span>
+              </td>
             </tr>
-            <tr class="bg-[#f9f7f0]">
-              <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed font-semibold text-center">選擇</td>
-              <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">
+            <tr class="bg-amber-50/40">
+              <td class="px-4 py-3 border-b border-slate-100 align-top text-xs font-bold text-amber-700 pt-4">選擇</td>
+              <td class="px-4 py-3 border-b border-slate-100 align-top text-slate-700 leading-loose">
                 A<br/>A + B<br/>A + B + B
               </td>
-              <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">
-                <span class="text-[#e03e3e] font-semibold">1,200 元</span><br/>
-                <span class="text-[#e03e3e] font-semibold">1,600 元</span><br/>
-                <span class="text-[#e03e3e] font-semibold">2,000 元</span>
+              <td class="px-4 py-3 border-b border-slate-100 align-top leading-loose">
+                <span class="text-rose-500 font-bold">1,200 元</span><br/>
+                <span class="text-rose-500 font-bold">1,600 元</span><br/>
+                <span class="text-rose-500 font-bold">2,000 元</span>
               </td>
             </tr>
             <tr>
-              <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed font-semibold text-center">夜衝價</td>
-              <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed" colspan="2">
+              <td class="px-4 py-3 align-top text-xs font-bold text-slate-400">夜衝價</td>
+              <td class="px-4 py-3 align-top text-slate-600 leading-relaxed" colspan="2">
                 (1) 選擇方案 減 300（隔日需續租）／單選 B 案無折扣<br/>
                 (2) 隔日恢復原價
               </td>
@@ -221,9 +281,9 @@
         </table>
       </div>
 
-      <div class="bg-[#fff5f5] rounded-md px-4 py-3 flex items-start gap-2.5 my-3 text-sm leading-relaxed">
-        <span class="text-lg shrink-0 mt-[1px]">📌</span>
-        <div>
+      <div class="border-l-4 border-rose-400 bg-rose-50 rounded-r-xl px-4 py-3 flex items-start gap-2.5 text-sm leading-relaxed">
+        <span class="shrink-0 mt-0.5">📌</span>
+        <div class="text-rose-900">
           <strong>注意事項</strong><br/>
           (1) 搭帳作業會於入住日「前一天開始作業」<br/>
           (2) 取消或延期租帳訂單，須於「入住日前兩天」告知<br/>
@@ -234,41 +294,46 @@
     </div>
 
     <div id="price-panel-1" class="tab-content">
-      <img src="mattress.jpg" alt="床墊圖" class="max-w-full rounded-md mt-2" />
+      <img src="mattress.jpg" alt="床墊圖" class="max-w-full rounded-xl" />
     </div>
     <div id="price-panel-2" class="tab-content">
-      <img src="tent.jpg" alt="帳棚圖" class="max-w-full rounded-md mt-2" />
+      <img src="tent.jpg" alt="帳棚圖" class="max-w-full rounded-xl" />
     </div>
   </section>
 
   <!-- 4. 租借裝備明細 -->
-  <section class="section mb-14 scroll-mt-10" id="rental">
-    <h2 class="text-2xl font-bold mb-5 flex items-center gap-2 border-b border-[#e9e9e7] pb-2.5">📋 租借裝備明細</h2>
+  <section class="section mb-6 scroll-mt-10 bg-white rounded-2xl shadow-sm border border-slate-100 p-6" id="rental">
+    <h2 class="text-base font-bold mb-4 flex items-center gap-2 text-slate-800">
+      <span class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">📋</span>
+      租借裝備明細
+    </h2>
 
-    <div class="border border-[#e9e9e7] rounded overflow-hidden my-3">
+    <div class="rounded-xl overflow-hidden border border-slate-100">
       <table class="w-full text-sm border-collapse">
         <thead>
           <tr>
-            <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]">租借項目</th>
-            <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]" style="width:20%">價格</th>
-            <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]" style="width:30%">使用人員</th>
+            <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100">租借項目</th>
+            <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100" style="width:20%">價格</th>
+            <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100" style="width:30%">使用人員</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">A + B</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">1,600</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">Chi</td>
+            <td class="px-4 py-3 border-b border-slate-50 text-slate-700">A + B</td>
+            <td class="px-4 py-3 border-b border-slate-50 font-semibold text-slate-800">1,600</td>
+            <td class="px-4 py-3 border-b border-slate-50">
+              <span class="bg-green-100 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full">Chi</span>
+            </td>
           </tr>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">A + B + B</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">2,000</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed text-[#d0cfc9] italic">—</td>
+            <td class="px-4 py-3 border-b border-slate-50 text-slate-700">A + B + B</td>
+            <td class="px-4 py-3 border-b border-slate-50 font-semibold text-slate-800">2,000</td>
+            <td class="px-4 py-3 border-b border-slate-50 text-slate-300 italic">—</td>
           </tr>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed text-[#d0cfc9] italic">—</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed text-[#d0cfc9] italic">—</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed text-[#d0cfc9] italic">—</td>
+            <td class="px-4 py-3 text-slate-300 italic">—</td>
+            <td class="px-4 py-3 text-slate-300 italic">—</td>
+            <td class="px-4 py-3 text-slate-300 italic">—</td>
           </tr>
         </tbody>
       </table>
@@ -276,33 +341,48 @@
   </section>
 
   <!-- 5. Tern 租借項目 -->
-  <section class="section mb-14 scroll-mt-10" id="tern">
-    <h2 class="text-2xl font-bold mb-5 flex items-center gap-2 border-b border-[#e9e9e7] pb-2.5">🚲 Tern 租借項目</h2>
+  <section class="section mb-6 scroll-mt-10 bg-white rounded-2xl shadow-sm border border-slate-100 p-6" id="tern">
+    <h2 class="text-base font-bold mb-4 flex items-center gap-2 text-slate-800">
+      <span class="w-8 h-8 bg-stone-100 rounded-lg flex items-center justify-center">🚲</span>
+      Tern 租借項目
+    </h2>
 
-    <div class="border border-[#e9e9e7] rounded overflow-hidden my-3">
+    <div class="rounded-xl overflow-hidden border border-slate-100">
       <table class="w-full text-sm border-collapse">
         <thead>
           <tr>
-            <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]">車輛</th>
-            <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]" style="width:20%">電池</th>
-            <th class="bg-[#f7f6f3] text-[#9b9a97] font-medium text-[13px] px-[14px] py-2 text-left border-b border-[#e9e9e7]" style="width:30%">使用人員</th>
+            <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100">車輛</th>
+            <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100" style="width:20%">電池</th>
+            <th class="bg-slate-50 text-slate-400 font-medium text-xs px-4 py-2.5 text-left border-b border-slate-100" style="width:30%">使用人員</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">HSD × 2</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">4</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">Chi</td>
+            <td class="px-4 py-3 border-b border-slate-50 text-slate-700">HSD × 2</td>
+            <td class="px-4 py-3 border-b border-slate-50">
+              <span class="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded-md">4</span>
+            </td>
+            <td class="px-4 py-3 border-b border-slate-50">
+              <span class="bg-green-100 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full">Chi</span>
+            </td>
           </tr>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed text-[#d0cfc9] italic">—</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">1</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">Angeline</td>
+            <td class="px-4 py-3 border-b border-slate-50 text-slate-300 italic">—</td>
+            <td class="px-4 py-3 border-b border-slate-50">
+              <span class="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded-md">1</span>
+            </td>
+            <td class="px-4 py-3 border-b border-slate-50">
+              <span class="bg-green-100 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full">Angeline</span>
+            </td>
           </tr>
           <tr>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed text-[#d0cfc9] italic">—</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">1</td>
-            <td class="px-[14px] py-[10px] border-b border-[#e9e9e7] align-top leading-relaxed">JoJo</td>
+            <td class="px-4 py-3 text-slate-300 italic">—</td>
+            <td class="px-4 py-3">
+              <span class="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded-md">1</span>
+            </td>
+            <td class="px-4 py-3">
+              <span class="bg-green-100 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full">JoJo</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -310,27 +390,32 @@
   </section>
 
   <!-- 6. 攜帶物品 -->
-  <section class="section mb-14 scroll-mt-10" id="items">
-    <h2 class="text-2xl font-bold mb-5 flex items-center gap-2 border-b border-[#e9e9e7] pb-2.5">🎒 攜帶物品</h2>
-    <div class="bg-[#f9f7f0] rounded-md px-4 py-3 flex items-start gap-2.5 my-3 text-sm leading-relaxed">
-      <span class="text-lg shrink-0 mt-[1px]">📝</span>
-      <span>攜帶物品清單（待補充）</span>
+  <section class="section mb-6 scroll-mt-10 bg-white rounded-2xl shadow-sm border border-slate-100 p-6" id="items">
+    <h2 class="text-base font-bold mb-4 flex items-center gap-2 text-slate-800">
+      <span class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">🎒</span>
+      攜帶物品
+    </h2>
+    <div class="border-l-4 border-slate-200 bg-slate-50 rounded-r-xl px-4 py-3 flex items-start gap-2.5 text-sm">
+      <span class="shrink-0 mt-0.5">📝</span>
+      <span class="text-slate-400">攜帶物品清單（待補充）</span>
     </div>
   </section>
 
   <!-- 7. 備註 -->
-  <section class="section mb-14 scroll-mt-10" id="notes">
-    <h2 class="text-2xl font-bold mb-5 flex items-center gap-2 border-b border-[#e9e9e7] pb-2.5">📝 備註</h2>
-    <div class="bg-[#f9f7f0] rounded-md px-4 py-3 flex items-start gap-2.5 my-3 text-sm leading-relaxed">
-      <span class="text-lg shrink-0 mt-[1px]">💬</span>
-      <span>備註內容（待補充）</span>
+  <section class="section mb-6 scroll-mt-10 bg-white rounded-2xl shadow-sm border border-slate-100 p-6" id="notes">
+    <h2 class="text-base font-bold mb-4 flex items-center gap-2 text-slate-800">
+      <span class="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center">📝</span>
+      備註
+    </h2>
+    <div class="border-l-4 border-slate-200 bg-slate-50 rounded-r-xl px-4 py-3 flex items-start gap-2.5 text-sm">
+      <span class="shrink-0 mt-0.5">💬</span>
+      <span class="text-slate-400">備註內容（待補充）</span>
     </div>
   </section>
 
 </main>
 
 <script>
-  // Tab switching
   function switchTab(group, index) {
     const tabs = document.getElementById(group + '-tabs');
     const btns = tabs.querySelectorAll('.tab-btn');
@@ -342,7 +427,6 @@
     });
   }
 
-  // Sidebar active link on scroll
   const sections = document.querySelectorAll('.section');
   const navLinks = document.querySelectorAll('.sidebar a');
 
